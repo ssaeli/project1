@@ -92,45 +92,6 @@ rename = new Map([
   ["Viet Nam", "Vietnam"]
 ])
 
-
-
-
-// Try to make an animation
-const burger = [{name:'🍔'},];
- const svg = d3.select('body')
- .append('svg')
- .attr('width', 400)
- .attr('height', 200);
-
-const burgers = svg.selectAll('hamburger')
-.data(burger)
-.enter()
-.append('hamburger')
-.text('🍔')
-.append('text')
-.attr('x', (d)=>{return d.x})
-.style('font-size', '200%');
-
-function animate()
-{
-  burgers.transition()
-  .delay((d) => {return 200*(burger.indexOf(d) - 1)})
-  .duration(1000)
-  .attr('x', (d)=> {return 0.8*d.x})
-  .transition()
-  .duration(1000)
-  .attr('x', (d)=>{return 1.2*d.x})
-  .on('end', animate)
-}
-
-
-
-
-
-
-
-
-
 color = d3.color('black')
 
 projection = d3.geoEqualEarth()
