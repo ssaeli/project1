@@ -2,14 +2,21 @@ import {  } from "module";
 
 data = Object.assign(new Map(d3.csvParse(await FileAttachment("hale.csv").text(), ({country, hale}) => [rename.get(country) || country, +hale])), {title: "Healthy life expectancy (years)"})
 
+d3.dsv(';', '\dati.csv', funciton(d){
+return {
+  dates : d.date,
+  burger_size : d.size,
+}
+}).then(function(data){
+console.log(data);
+})
+
+d3.select("body").node().getBoundingClientRect().width
+
 World Choropleth
 
-Health-adjusted life expectancy, 2016. Data: WHO
-455055606570
-75Healthy life expectancy (years)
 data = 
     
-
   Map(194) {
   "Afghanistan" => 53
   "Albania" => 68.1
@@ -94,19 +101,6 @@ rename = new Map([
 
 color = d3.color('black')
 
-projection = d3.geoEqualEarth()
-
-path = d3.geoPath(projection)
-
-width = 975
-
-height = {
-  const [[x0, y0], [x1, y1]] = d3.geoPath(projection.fitWidth(width, outline)).bounds(outline);
-  const dy = Math.ceil(y1 - y0), l = Math.min(Math.ceil(x1 - x0), dy);
-  projection.scale(projection.scale() * (l - 1) / l).precision(0.2);
-  return dy;
-}
-
 outline = ({type: "Sphere"})
 
 countries = topojson.feature(world, world.objects.countries)
@@ -122,7 +116,7 @@ import {legend} from "@d3/color-legend"
 
 
 chart = {
-  
+ 
   
   const svg = d3.create("svg")
       .style("display", "block")
@@ -172,8 +166,6 @@ ${data.has(d.properties.name) ? data.get(d.properties.name) : "N/A"}`);
       .attr("xlink:href", new URL("#outline", location))
       .attr("fill", "none")
       .attr("stroke", "black");
-  
-const burgers = svg.append('g')
 
   return svg.node();
   
